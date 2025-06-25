@@ -27,7 +27,7 @@
 
 <script setup>
 import { computed, ref } from 'vue';
-import Modal from 'vueleton/lib/modal';
+import Modal from '@/common/ui/modal.vue';
 import { getScriptName, sendCmdDirectly } from '@/common';
 import { formatDate } from '@/common/date';
 import { objectGet } from '@/common/object';

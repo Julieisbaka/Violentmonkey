@@ -1,5 +1,5 @@
 import { createApp, h } from 'vue';
-import Modal from 'vueleton/lib/modal';
+import Modal from '@/common/ui/modal.vue';
 import { trueJoin } from '@/common';
 import { i18n } from '@/common/util';
 import Message from './message';

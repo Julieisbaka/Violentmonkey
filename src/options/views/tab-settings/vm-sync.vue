@@ -70,7 +70,7 @@
 </template>
 
 <script>
-import Tooltip from 'vueleton/lib/tooltip';
+import Tooltip from '@/common/ui/tooltip.vue';
 import { sendCmdDirectly } from '@/common';
 import options from '@/common/options';
 import SettingCheck from '@/common/ui/setting-check';

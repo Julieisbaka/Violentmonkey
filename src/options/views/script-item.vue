@@ -155,8 +155,8 @@ const setScriptFocus = val => keyboardService.setContext('scriptFocus', val);
 </script>
 
 <script setup>
-import Dropdown from 'vueleton/lib/dropdown';
-import Tooltip from 'vueleton/lib/tooltip';
+import Dropdown from '@/common/ui/dropdown.vue';
+import Tooltip from '@/common/ui/tooltip.vue';
 import Icon from '@/common/ui/icon';
 import { computed, ref, watch } from 'vue';
 

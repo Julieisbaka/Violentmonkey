@@ -110,7 +110,7 @@ const items = {
 
 <script setup>
 import { computed, onMounted, reactive, ref, watch } from 'vue';
-import Tooltip from 'vueleton/lib/tooltip';
+import Tooltip from '@/common/ui/tooltip.vue';
 import SettingCheck from './setting-check.vue';
 
 let popupWidthDragging;

@@ -170,8 +170,8 @@ import { setRoute, lastRoute } from '@/common/router';
 import { keyboardService, handleTabNavigation } from '@/common/keyboard';
 import { TAB_SETTINGS } from '@/common/safe-globals';
 import { loadData } from '@/options';
-import Dropdown from 'vueleton/lib/dropdown';
-import Tooltip from 'vueleton/lib/tooltip';
+import Dropdown from '@/common/ui/dropdown.vue';
+import Tooltip from '@/common/ui/tooltip.vue';
 import SettingCheck from '@/common/ui/setting-check';
 import Icon from '@/common/ui/icon';
 import { customCssElem, findStyleSheetRules } from '@/common/ui/style';
@@ -806,41 +806,43 @@ onBeforeUnmount(() => {
 </script>
 
 <style>
-$iconSize: 2rem; // from .icon in ui/style.css
+/* Converted to valid CSS from SCSS */
 .tab.tab-installed {
   height: 100vh;
   padding: 0;
   overflow: auto;
-  header {
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-    background: var(--fill-0-5);
-    height: 4rem;
-    align-items: center;
-    line-height: 1;
-    border-bottom: 1px solid var(--fill-5);
-    .btn-ghost, select {
-      height: $iconSize;
-    }
+}
+.tab.tab-installed header {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background: var(--fill-0-5);
+  height: 4rem;
+  align-items: center;
+  line-height: 1;
+  border-bottom: 1px solid var(--fill-5);
+}
+.tab.tab-installed .btn-ghost,
+.tab.tab-installed select {
+  height: 2rem;
+}
+.tab.tab-installed .vl-dropdown-menu {
+  white-space: nowrap;
+}
+@media (max-width: 550px) {
+  .tab.tab-installed header {
+    overflow-x: auto;
+    overflow-y: hidden;
   }
-  .vl-dropdown-menu {
-    white-space: nowrap;
+  .tab.tab-installed .vl-dropdown-menu {
+    position: fixed;
+    top: auto;
+    left: 0;
+    right: auto;
   }
-  @media (max-width: 550px) { // same size as `hidden-sm` in @/common/ui/style/style.css
-    /* The header bar must be set to scrollable and the dropdown fixed simultaneously. */
-    header {
-      overflow-x: auto;
-      overflow-y: hidden;
-    }
-    .vl-dropdown-menu {
-      position: fixed;
-      top: auto;
-      left: 0;
-      right: auto;
-    }
-  }
-  @media (max-width: 767px) {
+}
+@media (max-width: 767px) {
+  .tab.tab-installed {
     height: auto;
     overflow: visible;
   }

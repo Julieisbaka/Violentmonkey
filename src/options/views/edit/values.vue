@@ -123,7 +123,7 @@ import { deepCopy, deepEqual, forEachEntry, mapEntry } from '@/common/object';
 import { WATCH_STORAGE } from '@/common/consts';
 import hookSetting from '@/common/hook-setting';
 import CodeMirror from 'codemirror';
-import Dropdown from 'vueleton/lib/dropdown';
+import Dropdown from '@/common/ui/dropdown.vue';
 import VmCode from '@/common/ui/code';
 import Icon from '@/common/ui/icon';
 import { getActiveElement, showMessage } from '@/common/ui';

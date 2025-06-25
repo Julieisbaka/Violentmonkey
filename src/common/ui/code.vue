@@ -54,7 +54,7 @@
 </template>
 
 <script>
-import { EditorView, basicSetup, keymap } from '@codemirror/basic-setup';
+import { EditorView, basicSetup, keymap } from 'codemirror';
 import { EditorState } from '@codemirror/state';
 import { javascript } from '@codemirror/lang-javascript';
 import { searchKeymap, search, highlightSelectionMatches } from '@codemirror/search';

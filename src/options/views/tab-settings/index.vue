@@ -133,7 +133,7 @@ const items = {
 
 <script setup>
 import { onActivated, onDeactivated, reactive, ref, watch } from 'vue';
-import Tooltip from 'vueleton/lib/tooltip';
+import Tooltip from '@/common/ui/tooltip.vue';
 import SettingCheck from '@/common/ui/setting-check';
 import LocaleGroup from '@/common/ui/locale-group';
 import SettingText from '@/common/ui/setting-text';
@@ -168,34 +168,35 @@ onDeactivated(() => {
 </script>
 
 <style>
+/* Converted to valid CSS from SCSS */
 .tab-settings {
   overflow-y: auto;
-  input[type="number"] {
-    width: 3.5em;
-    padding-left: .25em;
-  }
-  h1 {
-    margin-top: 0;
-  }
-  summary {
-    cursor: pointer;
-    margin-left: -1em;
-    user-select: none;
-    &:focus > *,
-    &:hover > * {
-      text-decoration: underline;
-    }
-    h3 {
-      margin-top: 0;
-    }
-  }
-  ruby {
-    color: var(--fill-8);
-  }
-  .icon {
-    width: 16px;
-    height: 16px;
-    fill: var(--fg);
-  }
+}
+.tab-settings input[type="number"] {
+  width: 3.5em;
+  padding-left: .25em;
+}
+.tab-settings h1 {
+  margin-top: 0;
+}
+.tab-settings summary {
+  cursor: pointer;
+  margin-left: -1em;
+  user-select: none;
+}
+.tab-settings summary:focus > *,
+.tab-settings summary:hover > * {
+  text-decoration: underline;
+}
+.tab-settings summary h3 {
+  margin-top: 0;
+}
+.tab-settings ruby {
+  color: var(--fill-8);
+}
+.tab-settings .icon {
+  width: 16px;
+  height: 16px;
+  fill: var(--fg);
 }
 </style>
