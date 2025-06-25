@@ -61,7 +61,7 @@ export const decodeResource = (raw, isBlob) => {
     return `data:${mimeType};base64,${mimeData}`;
   }
   res = safeAtob(mimeData);
-  // TODO: do the check in BG and cache/store the result because safe-guarding all the stuff
+  // TODO: #2333 do the check in BG and cache/store the result because safe-guarding all the stuff
   // regexp picks from an instance internally is inordinately complicated
   if (/[\x80-\xFF]/::regexpTest(res)) {
     const len = res.length;
