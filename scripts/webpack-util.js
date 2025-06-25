@@ -2,6 +2,10 @@ const fs = require('fs');
 const babelCore = require('@babel/core');
 const webpack = require('webpack');
 
+function escapeRegExp(string) {
+  return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+}
+
 const entryGlobals = {
   'common': [],
   'injected/content': [],
@@ -56,8 +60,8 @@ function addWrapperWithGlobals(name, config, defsObj, callback) {
   });
   const defsRe = new RegExp(`\\b(${
     Object.keys(defsObj)
+    .map(escapeRegExp)
     .join('|')
-    .replace(/\./g, '\\.')
   })\\b`, 'g');
   const reader = () => (
     entryGlobals[name]
