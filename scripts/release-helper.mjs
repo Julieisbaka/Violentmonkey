@@ -1,5 +1,5 @@
 import { readdir, readFile } from 'fs/promises';
-import { join, resolve } from 'path';
+import { resolve } from 'path';
 import github from '@actions/github';
 import { exec } from './common.js';
 
