@@ -101,6 +101,10 @@ export async function notifyReleaseStatus({ title, description, success = true }
   const allowedDomains = ['discord.com', 'discordapp.com'];
   try {
     const url = new URL(DISCORD_WEBHOOK_RELEASE);
+    if (url.protocol !== 'https:') {
+      console.error(`Invalid DISCORD_WEBHOOK_RELEASE protocol: ${url.protocol}`);
+      return;
+    }
     if (!allowedDomains.includes(url.hostname)) {
       console.error(`Invalid DISCORD_WEBHOOK_RELEASE domain: ${url.hostname}`);
       return;
