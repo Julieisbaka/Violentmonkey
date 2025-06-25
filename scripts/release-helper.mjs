@@ -105,6 +105,10 @@ export async function notifyReleaseStatus({ title, description, success = true }
       console.error(`Invalid DISCORD_WEBHOOK_RELEASE protocol: ${url.protocol}`);
       return;
     }
+    if (url.protocol !== 'https:') {
+      console.error(`Invalid DISCORD_WEBHOOK_RELEASE protocol: ${url.protocol}`);
+      return;
+    }
     if (!allowedDomains.includes(url.hostname)) {
       console.error(`Invalid DISCORD_WEBHOOK_RELEASE domain: ${url.hostname}`);
       return;
