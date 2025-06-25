@@ -73,7 +73,7 @@
     "postcss": "^8.4.28",
     "postcss-calc": "^9.0.1",
     "postcss-import": "^15.1.0",
-    "postcss-loader": "^7.3.3",
+    "postcss-loader": "^8.1.1",
     "postcss-nested": "^6.0.1",
     "postcss-scss": "^4.0.4",
     "postcss-simple-vars": "^6.0.3",
