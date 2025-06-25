@@ -1,9 +1,17 @@
 import { readdir, readFile } from 'fs/promises';
-import { join } from 'path';
+import { join, resolve } from 'path';
 import github from '@actions/github';
 import { exec } from './common.js';
 
-const { VERSION, ASSETS_DIR, GITHUB_TOKEN } = process.env;
+const { VERSION, GITHUB_TOKEN } = process.env;
+const SAFE_ROOT_DIR = resolve('/path/to/trusted/root'); // Replace with the actual trusted root directory
+const ASSETS_DIR = (() => {
+  const resolvedPath = resolve(SAFE_ROOT_DIR, process.env.ASSETS_DIR || '');
+  if (!resolvedPath.startsWith(SAFE_ROOT_DIR)) {
+    throw new Error(`Invalid ASSETS_DIR: ${process.env.ASSETS_DIR}`);
+  }
+  return resolvedPath;
+})();
 const tag = `v${VERSION}`;
 
 let octokit;
