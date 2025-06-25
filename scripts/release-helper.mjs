@@ -98,6 +98,17 @@ export async function notifyReleaseStatus({ title, description, success = true }
     console.warn('DISCORD_WEBHOOK_RELEASE is not available!');
     return;
   }
+  const allowedDomains = ['discord.com', 'discordapp.com'];
+  try {
+    const url = new URL(DISCORD_WEBHOOK_RELEASE);
+    if (!allowedDomains.includes(url.hostname)) {
+      console.error(`Invalid DISCORD_WEBHOOK_RELEASE domain: ${url.hostname}`);
+      return;
+    }
+  } catch (error) {
+    console.error(`Invalid DISCORD_WEBHOOK_RELEASE URL: ${DISCORD_WEBHOOK_RELEASE}`);
+    return;
+  }
   const res = await fetch(DISCORD_WEBHOOK_RELEASE, {
     method: 'POST',
     headers: {
