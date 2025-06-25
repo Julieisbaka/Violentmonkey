@@ -1,9 +1,19 @@
 import { readdir, readFile } from 'fs/promises';
-import { join } from 'path';
+import { resolve } from 'path';
 import github from '@actions/github';
 import { exec } from './common.js';
 
-const { VERSION, ASSETS_DIR, GITHUB_TOKEN } = process.env;
+const { VERSION, GITHUB_TOKEN } = process.env;
+const SAFE_ROOT_DIR = resolve(process.env.SAFE_ROOT_DIR || (() => {
+  throw new Error('SAFE_ROOT_DIR environment variable is not set.');
+})());
+const ASSETS_DIR = (() => {
+  const resolvedPath = resolve(SAFE_ROOT_DIR, process.env.ASSETS_DIR || '');
+  if (!resolvedPath.startsWith(SAFE_ROOT_DIR)) {
+    throw new Error(`Invalid ASSETS_DIR: ${process.env.ASSETS_DIR}`);
+  }
+  return resolvedPath;
+})();
 const tag = `v${VERSION}`;
 
 let octokit;
