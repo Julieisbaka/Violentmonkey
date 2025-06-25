@@ -81,7 +81,7 @@ export function injectPageSandbox(data) {
     }
     if (ok) {
       ok = false;
-      // TODO: Use a single PointerEvent with `pointerType: vaultId` when strict_min_version >= 59
+      // TODO: #2332 Use a single PointerEvent with `pointerType: vaultId` when strict_min_version >= 59
       if (IS_FIREFOX) {
         const setOk = evt => { ok = evt::getDetail(); };
         window::on(VAULT_WRITER_ACK, setOk, true);
