@@ -2,6 +2,7 @@ import { readdir, readFile } from 'fs/promises';
 import { resolve } from 'path';
 import github from '@actions/github';
 import { exec } from './common.js';
+import shellEscape from 'shell-escape';
 
 const { VERSION, GITHUB_TOKEN } = process.env;
 const SAFE_ROOT_DIR = resolve(process.env.SAFE_ROOT_DIR || (() => {
@@ -39,7 +40,8 @@ function listCommits() {
   const thisTag = exec('git describe --abbrev=0 --tags');
   const prevTag = exec(`git describe --abbrev=0 --tags "${thisTag}^"`);
   const tagRange = `${prevTag}...${thisTag}`;
-  const list = exec(`git log --oneline --skip=1 --reverse "${tagRange}"`)
+  const escapedTagRange = shellEscape([tagRange]);
+  const list = exec(`git log --oneline --skip=1 --reverse ${escapedTagRange}`)
   .replace(/</g, '\\<')
   .split('\n')
   .map((str, i) => `${str.split(/\s/, 2)[1]}${10000 + i}\n* ${str}`)
