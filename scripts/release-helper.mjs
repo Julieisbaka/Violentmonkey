@@ -112,6 +112,10 @@ export async function notifyReleaseStatus({ title, description, success = true }
   const allowedPathRegex = /^\/api\/webhooks\/\d+\/[\w-]+$/; // Example: strict path validation
   try {
     const url = new URL(DISCORD_WEBHOOK_RELEASE);
+    if (url.username || url.password) {
+      console.error(`Invalid DISCORD_WEBHOOK_RELEASE URL: username and password must be empty.`);
+      return;
+    }
     if (url.protocol !== 'https:') {
       console.error(`Invalid DISCORD_WEBHOOK_RELEASE protocol: ${url.protocol}`);
       return;
