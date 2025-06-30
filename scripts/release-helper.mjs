@@ -109,18 +109,23 @@ export async function notifyReleaseStatus({ title, description, success = true }
     return;
   }
   const allowedDomains = ['discord.com', 'discordapp.com'];
+  const allowedPathRegex = /^\/api\/webhooks\/\d+\/[\w-]+$/; // Example: strict path validation
   try {
     const url = new URL(DISCORD_WEBHOOK_RELEASE);
-    if (url.protocol !== 'https:') {
-      console.error(`Invalid DISCORD_WEBHOOK_RELEASE protocol: ${url.protocol}`);
+    if (url.username || url.password) {
+      console.error(`Invalid DISCORD_WEBHOOK_RELEASE URL: username and password must be empty.`);
       return;
     }
     if (url.protocol !== 'https:') {
       console.error(`Invalid DISCORD_WEBHOOK_RELEASE protocol: ${url.protocol}`);
       return;
     }
-    if (!allowedDomains.includes(url.hostname)) {
+    if (!allowedDomains.some(domain => url.hostname === domain)) {
       console.error(`Invalid DISCORD_WEBHOOK_RELEASE domain: ${url.hostname}`);
+      return;
+    }
+    if (!allowedPathRegex.test(url.pathname)) {
+      console.error(`Invalid DISCORD_WEBHOOK_RELEASE path: ${url.pathname}`);
       return;
     }
   } catch (error) {
